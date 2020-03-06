@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Navbar } from 'react-bootstrap';
 
-const Navbars = ({ iconProp, myTitle }) => {
+const MyNavbar = ({ iconProp, myTitle }) => {
     return (
         <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="#home"><i className={iconProp}></i>{myTitle}</Navbar.Brand>
@@ -10,13 +10,13 @@ const Navbars = ({ iconProp, myTitle }) => {
     );
 }
 
-Navbars.defaultProps = {
+MyNavbar.defaultProps = {
     myTitle: 'Github Finder',
     iconProp: 'fab fa-github'
 }
-Navbars.propTypes = {
+MyNavbar.propTypes = {
     myTitle: PropTypes.string.isRequired,
     iconProp: PropTypes.string.isRequired
 }
 
-export default Navbars;
+export default MyNavbar;

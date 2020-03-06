@@ -5,7 +5,7 @@ import { Card, Button } from 'react-bootstrap';
 
 const UserItem = ({ user: { login, avatar_url, html_url }}) => { //props.user
     return (
-        <Card bg="light" style={{ width: '18rem', alignItems: 'center', marginRight: '2rem' }}>
+        <Card bg="light" style={{ width: '10rem', alignItems: 'center', margin: '1rem' }}>
             <Card.Img
                 variant="top"
                 src={avatar_url}
@@ -16,7 +16,7 @@ const UserItem = ({ user: { login, avatar_url, html_url }}) => { //props.user
             <Card.Body>
                 <Card.Title>{login}</Card.Title>
                 <Card.Link href={html_url}>
-                    <Button variant="primary" className="btn-sm">More Info..</Button>
+                    <Button variant="primary" className="btn-sm">More Info</Button>
                 </Card.Link>
             </Card.Body>
         </Card>
