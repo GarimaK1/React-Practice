@@ -1,2 +1,2 @@
 # React-Practice
-Learning react on reactjs.org
+React based projects
