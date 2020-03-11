@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Navbar } from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
 
 const MyNavbar = ({ iconProp, myTitle }) => {
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home"><i className={iconProp}></i>{myTitle}</Navbar.Brand>
+            <Navbar.Brand href="#home"><i className={iconProp}></i> {myTitle}</Navbar.Brand>
         </Navbar>
     );
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from 'prop-types';
-
 import { Card, Button } from 'react-bootstrap';
 
 const UserItem = ({ user: { login, avatar_url, html_url }}) => { //props.user
@@ -16,7 +15,7 @@ const UserItem = ({ user: { login, avatar_url, html_url }}) => { //props.user
             <Card.Body>
                 <Card.Title>{login}</Card.Title>
                 <Card.Link href={html_url}>
-                    <Button variant="primary" className="btn-sm">More Info</Button>
+                    <Button variant="dark" className="btn-sm">More Info</Button>
                 </Card.Link>
             </Card.Body>
         </Card>
