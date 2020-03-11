@@ -1,3 +1,16 @@
+Garima Notes:
+Used react-bootstrap to style the application
+Added vanilla bootstrap and react-bootstrap to this project
+
+To use inline styles, use style={{}}
+
+In react, lists must have keys. Keys must be unique.
+
+We can import images into component because of webpack.
+
+If you store global variable in any .env file and make changes, make sure to restart the server 
+(npm start for dev) for changes to take effect.
+==========================================================================================================
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

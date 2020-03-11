@@ -27,7 +27,7 @@ Users.propTypes = {
 const userStyle = {
     display: 'flex',
     flexFlow: 'row wrap',
-    justifyContent: 'center'
+    justifyContent: 'space-between'
 };
 
 export default Users;
