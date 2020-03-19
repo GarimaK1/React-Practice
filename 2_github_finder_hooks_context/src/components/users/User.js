@@ -26,8 +26,6 @@ class User extends Component {
             location,
             bio,
             html_url,
-            public_repos,
-            public_gists,
             hireable
         } = this.props.user;
 
@@ -56,9 +54,9 @@ class User extends Component {
                             }} />
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
-                            <Card.Text>
+                            {location && <Card.Text>
                                 Location: {location}
-                            </Card.Text>
+                            </Card.Text>}
                         </Card.Body>
                     </Card>
                 </Row>

@@ -9,9 +9,10 @@ const RepoItem = ({ repo }) => {
                 <a href={repo.html_url}>
                     <Card.Title>{repo.name}</Card.Title>
                 </a>
-                <Card.Text>
+                {repo.description && <Card.Text>
                     Description: {repo.description}
-                </Card.Text>
+                </Card.Text>}
+                
             </Card.Body>
         </Card>
     )
