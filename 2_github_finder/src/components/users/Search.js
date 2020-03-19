@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 
 class Search extends Component {
+    // In react, Form inputs are component level state
     state = {
         text: ''
     };
@@ -41,11 +42,13 @@ class Search extends Component {
                     />
                 </Form.Group>
                 <Button variant="dark" type="submit" className="btn-block btn-sm">
+                {/* above same as <Button variant="dark" type="submit" size="sm" block> */}
                     Submit
                 </Button>
                 <Button variant="light"
                     type="button"
-                    className="btn-block btn-sm"
+                    size="sm"
+                    block
                     onClick={this.props.clearUsers}
                 >
                     Clear Search Results
