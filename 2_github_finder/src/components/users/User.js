@@ -2,17 +2,21 @@ import React, { Component, Fragment } from 'react';
 import MySpinner from "../layout/Spinner";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Button, Row, Col, Card, ListGroup } from 'react-bootstrap';
+import { Container, Button, Row, Card } from 'react-bootstrap';
+import Repos from '../repos/Repos';
 
 class User extends Component {
     componentDidMount() {
         this.props.getUser(this.props.match.params.login);
+        this.props.getUserRepos(this.props.match.params.login);             
     }
 
     static propTypes = {
         getUser: PropTypes.func.isRequired,
         user: PropTypes.object.isRequired,
-        loading: PropTypes.bool
+        loading: PropTypes.bool,
+        getUserRepos: PropTypes.func.isRequired,
+        repos: PropTypes.array.isRequired
     };
 
     render() {
@@ -59,12 +63,12 @@ class User extends Component {
                     </Card>
                 </Row>
                 <Row style={{ display: 'flex', flexDirection: 'column' }}>
-                    {bio && <p style={{ marginTop: '1rem' }}>
+                    {bio && <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
                         <h4>Bio: </h4>
                         <div>{bio}</div>
-                    </p>}
+                    </div>}
 
-                    {hireable && <Fragment style={{ marginTop: '1rem' }}>
+                    {hireable && <Fragment>
                         <h4>Hireable: <span>{hireable ? <i className="fas fa-check" /> : <i className="fas fa-times" />}</span></h4>
                     </Fragment>}
 
@@ -73,8 +77,9 @@ class User extends Component {
                     </p>
                 </Row>
                 <Row>
-                    <div>
-                        
+                    <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+                        <h4>Recently Updated Repositories: </h4>
+                        <Repos repos={this.props.repos} />
                     </div>
                 </Row>
             </Container>

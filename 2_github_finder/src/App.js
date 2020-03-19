@@ -13,6 +13,7 @@ class App extends React.Component {
   state = {
     users: [],
     user: {},
+    repos: [],
     loading: false,
     alert: null
   };
@@ -26,6 +27,7 @@ class App extends React.Component {
     this.initialUsers();
   }
 
+  // Get default 30 users from Github
   initialUsers = async () => {
     const responseData = await axios.get(`https://api.github.com/users?
     client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&
@@ -60,6 +62,16 @@ class App extends React.Component {
     client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
     // console.log(responseData);
     this.setState({ user: responseData.data, loading: false });
+  }
+
+  // Show github user repos (first 5):
+  getUserRepos = async (username) => {
+    this.setState({ loading: true })
+    const responseData = await axios.get(`https://api.github.com/users/${username}/repos?page=1&per_page=5&sort=updated&order=desc&
+    client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&
+    client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+    console.log(responseData);
+    this.setState({ repos: responseData.data, loading: false });
   }
 
   //Show custom alert
@@ -102,7 +114,13 @@ class App extends React.Component {
               <Route exact path='/user/:login' render={props => (
                 // Refer: https://reactjs.org/docs/render-props.html
                 // Refer: https://reactjs.org/docs/jsx-in-depth.html#spread-attributes
-                    <User {...props} getUser={this.getUserFromGitHub} user={this.state.user} loading={this.state.loading} />
+                    <User {...props} 
+                          getUser={this.getUserFromGitHub} 
+                          user={this.state.user} 
+                          loading={this.state.loading} 
+                          getUserRepos={this.getUserRepos} 
+                          repos={this.state.repos} 
+                          />
               )}
               />
             </Switch>
