@@ -10,6 +10,9 @@ We can import images into component because of webpack.
 
 If you store global variable in any .env file and make changes, make sure to restart the server 
 (npm start for dev) for changes to take effect.
+
+React basics explained: https://www.reactenlightenment.com/
+
 ==========================================================================================================
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
