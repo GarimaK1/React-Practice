@@ -1,15 +1,16 @@
 import React, { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import GithubContext from "../../context/github/githubContext";
+import AlertContext from "../../context/alert/alertContext";
 
-const Search = ({ setAlert }) => {
+const Search = () => {
     // coz earlier, this.props.clearUsers, this.props.searchUsers and this.props.setAlert
-    // In react, Form inputs are component level state
 
     const githubContext = useContext(GithubContext);
+    const alertContext = useContext(AlertContext);
 
     // Using setState hook now that this is a functional component
+    // In react, Form inputs are component level state
     const [text, setText] = useState(''); // setting initial value of text to ''
 
     // e for event
@@ -19,7 +20,7 @@ const Search = ({ setAlert }) => {
         e.preventDefault();
         // console.log(e.target);
         if (text === '') {
-            setAlert('Search field cannot be blank for search operation.', 'danger');
+            alertContext.setAlert('Search field cannot be blank for search operation.', 'danger');
         } else {
             githubContext.searchUsers(text); // setting this.state.text on searchUsers in/of App.js
             setText('');
@@ -50,10 +51,6 @@ const Search = ({ setAlert }) => {
                 </Button>
         </Form>
     )
-}
-
-Search.propTypes = {
-    setAlert: PropTypes.func.isRequired
 }
 
 export default Search;
