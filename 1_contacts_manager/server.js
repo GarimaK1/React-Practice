@@ -1,14 +1,20 @@
 const express = require('express');
 const userRoutes = require('./routes/users');
-
+const connectDb = require('./config/database');
 
 const app = express();
 
 const port = process.env.PORT || 5000;
 
-app.get('/', (req, res) => res.json({ message: 'Hi! Welcome to Contacts Manager' }));
-// res.send('Hello')
+//Connect with database
+connectDb();
 
+app.get('/', (req, res) => res.json({ message: 'Hi! Welcome to Contacts Manager' }));
+
+// Using middleware
+app.use(express.json({ extended: false}));
+
+// Routes 
 app.use('/api/users', userRoutes);
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/contacts', require('./routes/contacts'));
