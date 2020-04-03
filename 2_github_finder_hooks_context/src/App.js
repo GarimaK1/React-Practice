@@ -19,7 +19,7 @@ const App = () => {
       <AlertState>
       <BrowserRouter>
         <Fragment>
-          <MyNavbar myTitle="Github Finder" iconProp="fab fa-github" />
+          <MyNavbar myTitle="Github User Search" iconProp="fab fa-github" />
           <Container fluid >
             <Row >
               <Col style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'center' }}>

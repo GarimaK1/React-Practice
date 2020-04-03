@@ -9,8 +9,7 @@ const MyNavbar = ({ iconProp, myTitle }) => {
         <Navbar bg="dark" variant="dark" expand="sm" >
             <Link to="/">
             <Navbar.Brand>
-                <i className={iconProp}></i>
-                 {myTitle}
+                <i className={iconProp}></i> {myTitle}
             </Navbar.Brand>
             </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
