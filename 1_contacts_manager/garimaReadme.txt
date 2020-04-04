@@ -24,6 +24,34 @@ the value of these global objects will be available throughout the project.
 using this package from npm to validate input on arrival at each end-point
 e.g. if 'name' is required in mongoose model, input (form/via postman) must have 'name'
 
+-- React front-end created using Material UI. Everything relating to react inside 'client' folder!
+For material UI, Roboto font is required.
+To use roboto font:
+Method - 1:
+Add the following lines inside <head> tag of public/index.html and thats it!
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+    </style>
+Disadvantage of method-1 : relies on google CDN/google server to ensure font delivery. 
+                            May not be applicable everywhere like China, which blocks Google.
 
-
-
+Method - 2:
+Inside client folder:
+    npm install typeface-roboto --save
+Then, in your index.js: import 'typeface-roboto'; This did not work for me. So as a workaround, I did this:
+    npm install typeface-roboto --save 
+In src/index.css, add the following lines: 
+    @import '~typeface-roboto';
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    } 
+In src/index.js, import the css file:
+    import './index.css';
+Disadvantage of method-2 : Includes unnessary Roboto fonts too that are not used by Material UI.
+                            So just delete the unwanted font files and usage if you want.
