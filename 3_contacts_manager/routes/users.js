@@ -49,7 +49,7 @@ router.post('/', [
 
             const payload = {
                 user: {
-                    id: user.id
+                    id: user.id // Refer for doc id virtual getter: https://mongoosejs.com/docs/guide.html#id
                 }
             };
             

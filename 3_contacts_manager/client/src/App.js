@@ -1,9 +1,10 @@
 import React from 'react';
+import Navbar from './components/layout/Navbar';
 
-const App = () => {
+function App() {
   return (
     <div>
-      Contacts Manager React Application
+      <Navbar />
     </div>
   );
 }
