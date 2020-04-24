@@ -24,7 +24,9 @@ the value of these global objects will be available throughout the project.
 using this package from npm to validate input on arrival at each end-point
 e.g. if 'name' is required in mongoose model, input (form/via postman) must have 'name'
 
--- React front-end created using Material UI. Everything relating to react inside 'client' folder!
+Note: I started using Material UI and found it to be very extensive. Time was short.
+So I switched back to react-bootstrap. Its not the best but it is very intuitive/easy for me to use .
+-- React front-end created using Material UI. Everything relating to react inside 'client-MaterialUI' folder!
 For material UI, Roboto font is required.
 To use roboto font:
 Method - 1:

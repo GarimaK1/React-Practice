@@ -14,7 +14,7 @@ const connectDb = () => {
         })
         .then(() => console.log('Connected to mongodb successfully!'))
         .catch((err) => {
-            console.log('Error in connecting to DB! Error: ');
+            console.log('Error in connecting to DB! Error: ' + err);
             process.exit(1);
         });
 }
@@ -28,9 +28,9 @@ const connectDb = async () => {
                 useFindAndModify: false,
                 useCreateIndex: true
             });
-        console.log('Connected to mongodb successfully!')
+        console.log('Connected to mongodb successfully!');
     } catch (error) {
-        console.log('Error in connecting to DB! Error: ');
+        console.log('Error in connecting to DB! Error: ' + error);
         process.exit(1);
     }
 }  */

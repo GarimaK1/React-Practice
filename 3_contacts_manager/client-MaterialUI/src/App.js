@@ -12,7 +12,7 @@ const myTheme = createMuiTheme({
   typography: {
     // In Chinese and Japanese the characters are usually larger,
     // so a smaller fontsize may be appropriate.
-    fontSize: 14,
+    fontSize: 14
   }
 });
 
@@ -20,9 +20,9 @@ const theme = responsiveFontSizes(myTheme);
 
 const App = () => {
   return (
-  <ThemeProvider theme={theme}>
-    <NavBar />
-  </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <NavBar />
+      </ThemeProvider>
   );
 }
 
