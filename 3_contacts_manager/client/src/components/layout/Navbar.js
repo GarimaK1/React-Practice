@@ -7,11 +7,25 @@ import { Link } from "react-router-dom";
 const MyNavbar = ({ myTitle, iconProp }) => { //props.title, props.icon
     return (
         <Navbar bg="dark" variant="dark" expand="sm" >
-            {/* <Link to="/"> */}
+            <Link to="/">
                 <Navbar.Brand>
-                    <i className={iconProp}></i> {myTitle}
+                    <i className={iconProp}></i>   {myTitle}
                 </Navbar.Brand>
-            {/* </Link> */}
+            </Link>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+                <Nav>
+                    {/* Using 'link to' instead of 'a href' to preserve state  */}
+                    <Link to="/" className="nav-link">
+                        Home
+                    </Link>
+                </Nav>
+                <Nav>
+                    <Link to="/about" className="nav-link">
+                        About Us
+                    </Link>
+                </Nav>
+            </Navbar.Collapse>
         </Navbar>
     )
 }
