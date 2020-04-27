@@ -1,12 +1,19 @@
 import React from 'react';
 import Contacts from '../contacts/Contacts';
+import ContactForm from "../contacts/ContactForm";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Home = () => {
     return (
-        <div style={{ marginTop: '1rem' }}>
-            <h1>Home Page</h1>
-            <Contacts />
-        </div>
+        <Container fluid>
+            <ContactForm />
+            
+            <Row style={{ justifyContent: 'center' }}>
+                <Contacts />
+            </Row>
+        </Container>
     )
 }
 

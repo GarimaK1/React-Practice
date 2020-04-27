@@ -11,17 +11,17 @@ const ContactItem = ({ contact }) => { // props.contact
     return (
         <Card
             bg="light"
-            style={{ width: '18rem' }}
+            style={{ width: '15.5rem' , margin: '0.75rem'}}
             className="text-center"
         >
             <Card.Body>
                 <Card.Title >
-                    {name} 
+                    {name}
                     <h6>
                         <Badge pill variant={type === 'professional' ? 'success' : 'secondary'}>
                             {type.charAt(0).toUpperCase() + type.slice(1)}
                         </Badge>
-                    </h6> 
+                    </h6>
                 </Card.Title>
                 <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
                     {email && (<li>
