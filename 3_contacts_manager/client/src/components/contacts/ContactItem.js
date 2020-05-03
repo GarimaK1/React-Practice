@@ -6,18 +6,17 @@ import PropTypes from 'prop-types';
 
 const ContactItem = ({ contact }) => { // props.contact
 
-    const { id, name, email, phone, type } = contact;
+    const { name, email, phone, type } = contact;
 
     return (
         <Card
             bg="light"
-            style={{ width: '15.5rem' , margin: '0.75rem'}}
-            className="text-center"
+            style={{ width: '16.5rem' , margin: '0.75rem' }}
         >
-            <Card.Body>
+            <Card.Body style={{ padding: '0.75rem' }}>
                 <Card.Title >
                     {name}
-                    <h6>
+                    <h6 style={{ float: "right"}} >
                         <Badge pill variant={type === 'professional' ? 'success' : 'secondary'}>
                             {type.charAt(0).toUpperCase() + type.slice(1)}
                         </Badge>
@@ -31,7 +30,7 @@ const ContactItem = ({ contact }) => { // props.contact
                         <i className="fas fa-phone" /> {phone}
                     </li>)}
                 </ul>
-                <Button variant="primary" size="sm" style={{ width: '4rem' }}>Edit</Button>
+                <Button variant="dark" size="sm" style={{ width: '4rem' }}>Edit</Button>
                 <span>{' '}</span>
                 <Button variant="danger" size="sm" style={{ width: '4rem' }}>Delete</Button>
             </Card.Body>

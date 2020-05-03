@@ -17,7 +17,7 @@ const App = () => {
       <Router>
 
         <Navbar />
-        <Container fluid style={{ width: '80%', marginTop: '0.75rem' }}>
+        <Container fluid style={{ width: '70%', marginTop: '0.75rem' }}>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={AboutUs} />
