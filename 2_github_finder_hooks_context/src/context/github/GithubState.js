@@ -22,7 +22,8 @@ const GithubState = props => {
     };
 
     const [state, dispatch] = useReducer(GithubReducer, initialState);
-    // dispatch dispatches actions/object{type, payload} to reducer
+    // dispatch dispatches action{type, payload} to reducer which is (state, action) => newState
+    // Refer: https://reactjs.org/docs/hooks-reference.html#usereducer
 
     // get initial default 30 users from github API
     const initialUsers = async () => {

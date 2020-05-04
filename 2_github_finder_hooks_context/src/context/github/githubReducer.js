@@ -10,7 +10,7 @@ import {
 // reducer is just a function
 // it is apparently simply returning updated state based on action.
 export default (state, action) => {
-    // dispatch has action/object{type, payload}
+    // dispatch dispatches actions/object{type, payload} to reducer
     switch(action.type) {
         case GET_INITIAL_USERS:
             return { ...state, users: action.payload, loading: false };
