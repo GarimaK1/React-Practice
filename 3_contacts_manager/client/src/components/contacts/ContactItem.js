@@ -11,7 +11,7 @@ const ContactItem = ({ contact }) => { // props.contact
     return (
         <Card
             bg="light"
-            style={{ width: '16.5rem' , margin: '0.75rem' }}
+            style={{  margin: '0.75rem' }}
         >
             <Card.Body style={{ padding: '0.75rem' }}>
                 <Card.Title >
