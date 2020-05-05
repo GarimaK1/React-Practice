@@ -5,7 +5,6 @@ const auth = require('../middleware/auth');
 const moment = require('moment');
 const { check, validationResult } = require('express-validator');
 
-
 // @route   GET /api/contacts
 // @desc    to get all contacts for a particular logged in user
 // @access  Private
@@ -35,7 +34,9 @@ router.get('/', auth, async (req, res) => {
 // Getting creator info from 'payload' in 'token' from 'auth' middleware.
 router.post('/', auth, [
     check('name', 'Name is required').notEmpty(), // contact should have a name
-    check('email', 'Please enter valid email address').isEmail()
+    check('email', 'Please enter valid email address').isEmail(),
+    check('phone', 'Please enter valid phone number').optional().matches(/^[2-9]\d{2}-[1-9]\d{2}-\d{4}$/)
+    // check('phone', 'Please enter valid phone number').optional({ checkFalsy : true, nullable: true }).isMobilePhone()
 ], async (req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
@@ -69,7 +70,9 @@ router.post('/', auth, [
 // In postman body, enter details for contact to be updated. Header 'x-auth-token' and token required.
 router.put('/:id', auth, [
     check('name', 'Name is required').notEmpty(), // contact should have a name
-    check('email', 'Please enter valid email address').isEmail()
+    check('email', 'Please enter valid email address').isEmail(),
+    check('phone', 'Please enter valid phone number').optional().matches(/^[2-9]\d{2}-[1-9]\d{2}-\d{4}$/)
+    // check('phone', 'Please enter valid phone number').optional({ checkFalsy: true, nullable: true }).isMobilePhone()
 ], async (req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);

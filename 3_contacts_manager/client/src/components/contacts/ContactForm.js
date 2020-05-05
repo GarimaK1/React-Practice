@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from 'react';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
 import ContactContext from '../../context/contact/contactContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -16,6 +16,7 @@ function handleChange(e) {
 const ContactForm = () => {
 
     const contactContext = useContext(ContactContext);
+    const { addContact, current } = contactContext;
 
     const [contact, setContact] = useState({
         name: '',
@@ -24,13 +25,26 @@ const ContactForm = () => {
         type: 'personal'
     });
 
+    useEffect(() => {
+        if (current) {
+            setContact(current);
+        } else {
+            setContact({
+                name: '',
+                phone: '',
+                email: '',
+                type: 'personal'
+            });
+        }
+    }, [current]);
+
     const { name, phone, email, type } = contact;
 
     const handleChange = (e) => setContact({ ...contact, [e.target.name]: e.target.value });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        contactContext.addContact(contact);
+        addContact(contact);
         setContact({
             name: '',
             phone: '',
@@ -44,19 +58,22 @@ const ContactForm = () => {
             <h3>Add Contact</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                    <Form.Control type="text" placeholder="Name" name="name" value={name} onChange={handleChange} />
+                    <Form.Control type="text" placeholder="Name" name="name" value={name} onChange={handleChange} required/>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control type="email" placeholder="Email" name='email' value={email} onChange={handleChange}/>
+                    <Form.Control type="email" placeholder="Email" name='email' value={email} onChange={handleChange} required/>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control type="text" placeholder="Phone" name='phone' value={phone} onChange={handleChange}/>
+                    <Form.Control type="tel" placeholder="Phone" name='phone' value={phone} pattern="^[2-9]\d{2}-[1-9]\d{2}-\d{4}$" onChange={handleChange} />
+                    <Form.Text className="text-muted">
+                        Phone format: 333-333-3333
+                    </Form.Text>
                 </Form.Group>
                 <Form.Label>Contact Type:</Form.Label>
                 <Form.Group>    
                     <Form.Check inline
                         type='radio'
-                        value='Personal'
+                        value='personal'
                         label="Personal"
                         name='type'
                         checked={type === 'personal'}
@@ -64,7 +81,7 @@ const ContactForm = () => {
                     />
                     <Form.Check inline
                         type='radio'
-                        value='Professional'
+                        value='professional'
                         label="Professional"
                         name='type'
                         checked={type === 'professional'}
