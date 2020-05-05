@@ -7,7 +7,7 @@ const ContactsSchema = mongoose.Schema(
         name: { type: String, required: true },
         email: { type: String, required: true },
         phone: { type: String },
-        type: { type: String, default: 'personal' }, // Personal or Professional    
+        type: { type: String, default: 'Personal' }, // Personal or Professional    
         date: { type: Date, default: Date.now }
     });
 

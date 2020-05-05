@@ -47,7 +47,7 @@ router.post('/', [
         try {
             const loggedInUser = await User.findOne({ email });
 
-            if (!loggedInUser) { // User not found in DB!
+            if (!loggedInUser) { // User email not found in DB!
                 return res.status(400).json({ message: 'Invalid credentials!' });
             }
 

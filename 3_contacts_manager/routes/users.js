@@ -59,7 +59,7 @@ router.post('/', [
                     // or throw error;
                 }
                 //return token that will be used later for authentication.
-                return res.status(200).json({ token });// same as writing .json({token: token})
+                return res.status(201).json({ token });// same as writing .json({token: token})
             }); 
             // res.status(201).json({ message: 'User created successfully!' });
         } 
