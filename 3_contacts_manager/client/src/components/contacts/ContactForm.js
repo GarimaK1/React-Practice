@@ -1,11 +1,22 @@
-import React, { Fragment, useState, useContext } from 'react';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
 import ContactContext from '../../context/contact/contactContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+// Event Handlers in React using Example:
+{/* <input type="text" onChange={handleChange} /> */}
+/* The handleChange function is an event handler.
+The event that the handler receives as a parameter is an object that contains a target field.
+This target is the DOM element that the event handler is bound to(here, the text input field).
+By accessing this field, we can determine what the target's value is changed to.
+function handleChange(e) {
+    console.log("new value", e.target.value);
+} */
+
 const ContactForm = () => {
 
     const contactContext = useContext(ContactContext);
+    const { addContact, current } = contactContext;
 
     const [contact, setContact] = useState({
         name: '',
@@ -14,13 +25,26 @@ const ContactForm = () => {
         type: 'personal'
     });
 
+    useEffect(() => {
+        if (current) {
+            setContact(current);
+        } else {
+            setContact({
+                name: '',
+                phone: '',
+                email: '',
+                type: 'personal'
+            });
+        }
+    }, [current]);
+
     const { name, phone, email, type } = contact;
 
-    const onChange = (e) => setContact({ ...contact, [e.target.name]: e.target.value });
+    const handleChange = (e) => setContact({ ...contact, [e.target.name]: e.target.value });
 
-    const onSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        contactContext.addContact(contact);
+        addContact(contact);
         setContact({
             name: '',
             phone: '',
@@ -32,33 +56,40 @@ const ContactForm = () => {
     return (
         <Fragment>
             <h3>Add Contact</h3>
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                    <Form.Control type="text" placeholder="Name" name="name" value={name} onChange={onChange} />
+                    <Form.Control type="text" placeholder="Name" name="name" value={name} onChange={handleChange} required/>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control type="email" placeholder="Email" name='email' value={email} onChange={onChange}/>
+                    <Form.Control type="email" placeholder="Email" name='email' value={email} onChange={handleChange} required/>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control type="text" placeholder="Phone" name='phone' value={phone} onChange={onChange}/>
+                    <Form.Control type="tel" placeholder="Phone" name='phone' value={phone} pattern="^[2-9]\d{2}-[1-9]\d{2}-\d{4}$" onChange={handleChange} />
+                    <Form.Text className="text-muted">
+                        Phone format: 333-333-3333
+                    </Form.Text>
                 </Form.Group>
                 <Form.Label>Contact Type:</Form.Label>
                 <Form.Group>    
                     <Form.Check inline
                         type='radio'
-                        value='Personal'
+                        value='personal'
                         label="Personal"
                         name='type'
+                        checked={type === 'personal'}
+                        onChange={handleChange}
                     />
                     <Form.Check inline
                         type='radio'
-                        value='Professional'
+                        value='professional'
                         label="Professional"
                         name='type'
+                        checked={type === 'professional'}
+                        onChange={handleChange}
                     />
                 </Form.Group>
-                <Button variant="primary" type="submit" size="sm">
-                    Submit
+                <Button variant="dark" type="submit" block>
+                    Add Contact
                 </Button>
             </Form>
         </Fragment>

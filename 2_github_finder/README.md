@@ -13,6 +13,14 @@ If you store global variable in any .env file and make changes, make sure to res
 
 React basics explained: https://www.reactenlightenment.com/
 
+Passing Props UP (Search.js and App.js)-
+It's not actually possible to pass props up to a parent component, props only go to the child component.
+What is happening here is the prop passed to the child is a function declared in the parent components scope, so that function has reference to all of the execution context of the parent component.
+
+So searchUsers is a function in App.js and we pass it down as a prop to the Search.js component. The searchUsers function has access to all the scope of the App.js component in which it was declared, but it doesn't matter where it is called from. This is just how scope and closures work in JavaScript.
+
+There is no passing of props up to a parent, that isn't possible and if you think about it makes no sense.  Props are passed to a child so if you want to pass a prop up, it must have come from the parent, so why do you need to pass it back up when the parent already has it?
+
 ==========================================================================================================
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -15,7 +15,7 @@ class Search extends Component {
     }
 
     // e for event
-    onChange = (e) => this.setState({ [e.target.name]: e.target.value }); // { text: e.target.value }
+    onChange = (e) => this.setState({ [e.target.name]: e.target.value }); // { text: e.target.name }
 
     onSubmit = e => {
         e.preventDefault();

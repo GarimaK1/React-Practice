@@ -7,11 +7,14 @@ import Col from 'react-bootstrap/Col';
 
 const Home = () => {
     return (
-        <Container fluid>
-            <ContactForm />
-            
-            <Row style={{ justifyContent: 'center' }}>
-                <Contacts />
+        <Container fluid >            
+            <Row >
+                <Col >
+                    <ContactForm />
+                </Col>
+                <Col >
+                    <Contacts />
+                </Col>
             </Row>
         </Container>
     )

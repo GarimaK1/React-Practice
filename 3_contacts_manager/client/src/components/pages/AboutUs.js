@@ -1,13 +1,13 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
 
 const AboutUs = () => {
     return (
-        <div style={{ textAlign: "center", marginTop: '1rem'}}>
-            <h1>About Contacts Manager</h1>
+        <Container>
+            <h3>About Contacts Manager</h3>
             <p>It is a MERN stack application where users can add/edit/delete contacts.</p>
             <p>Users can only view or modify their own contacts.</p>
-            
-        </div>
+        </Container>
     )
 }
 

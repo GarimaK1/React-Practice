@@ -7,7 +7,7 @@ So all protected routes have this information going forward.
 It can be accessed by 'req.user' 
 
 -- Applicatin workflow:
-Register user.
+Register user. This also returns a token. So basically user gets logged in automatically on registrtion.
 Login user. We get user info like user id from token.
 Create/Update/Delet contact. Protected routes. 'auth' middleware is used. Token is required. Get user info from token payload.
 So automatically creator id is obtained from token so create/update/delete methods are applicable for that creator id only.
