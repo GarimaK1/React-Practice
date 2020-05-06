@@ -16,7 +16,7 @@ function handleChange(e) {
 const ContactForm = () => {
 
     const contactContext = useContext(ContactContext);
-    const { addContact, current } = contactContext;
+    const { addContact, current, clearCurrent, updateContact } = contactContext;
 
     const [contact, setContact] = useState({
         name: '',
@@ -36,7 +36,7 @@ const ContactForm = () => {
                 type: 'personal'
             });
         }
-    }, [current]);
+    }, [current, contactContext]);
 
     const { name, phone, email, type } = contact;
 
@@ -44,18 +44,20 @@ const ContactForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addContact(contact);
-        setContact({
-            name: '',
-            phone: '',
-            email: '',
-            type: 'personal'
-        });
+        if (current) {
+            updateContact(contact);
+        } else {
+            addContact(contact);
+        }
     }
 
+    const handleClearAll = () => {
+        clearCurrent();
+    }
+ 
     return (
         <Fragment>
-            <h3>Add Contact</h3>
+            <h3>{current ? 'Edit Contact' : 'Add Contact'}</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Control type="text" placeholder="Name" name="name" value={name} onChange={handleChange} required/>
@@ -64,9 +66,9 @@ const ContactForm = () => {
                     <Form.Control type="email" placeholder="Email" name='email' value={email} onChange={handleChange} required/>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control type="tel" placeholder="Phone" name='phone' value={phone} pattern="^[2-9]\d{2}-[1-9]\d{2}-\d{4}$" onChange={handleChange} />
+                    <Form.Control type="tel" placeholder="Phone" name='phone' value={phone} pattern="^[1-9]\d{2}-[1-9]\d{2}-\d{4}$" onChange={handleChange} />
                     <Form.Text className="text-muted">
-                        Phone format: 333-333-3333
+                        Phone format: 999-999-9999
                     </Form.Text>
                 </Form.Group>
                 <Form.Label>Contact Type:</Form.Label>
@@ -88,9 +90,12 @@ const ContactForm = () => {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button variant="dark" type="submit" block>
-                    Add Contact
+                <Button variant="dark" type="submit" size="sm" block>
+                    {current ? 'Update Contact' : 'Add Contact' }
                 </Button>
+                {current && <Button variant="light" type="button" size="sm" block onClick={handleClearAll}>
+                    Clear Fields
+                </Button>}
             </Form>
         </Fragment>
     )

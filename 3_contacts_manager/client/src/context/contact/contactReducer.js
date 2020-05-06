@@ -24,6 +24,7 @@ export default (state, action) => {
             return {
                 ...state,
                 contacts: state.contacts.filter(contact => contact.id !== action.payload)
+                // Callback is a predicate, to test each element of the array. Return true to keep the element, false otherwise.
             };
         case SET_CURRENT:
             return {
@@ -34,6 +35,33 @@ export default (state, action) => {
             return {
                 ...state,
                 current: null
+            }
+        case UPDATE_CONTACT:
+            return {
+                ...state,
+                contacts: state.contacts.map(contact => contact.id === action.payload.id ? action.payload : contact )
+                /* same as writing:
+                 if (contact.id === action.payload.id) {
+                    return action.payload;
+                } else {
+                    return contact;
+                } 
+                Each time callback executes, the returned value is added to new_array.
+                */
+            }
+        case FILTER_CONTACTS:
+            // console.log(action.payload);
+            return {
+                ...state,
+                filtered: state.contacts.filter(contact => {
+                    const regex = new RegExp(action.payload, 'gi');
+                    return contact.name.match(regex) || regex.test(contact.email);
+                })
+            }
+        case CLEAR_FILTER:
+            return {
+                ...state,
+                filtered: null
             }
         default:
             return state;
