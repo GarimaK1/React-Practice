@@ -25,6 +25,16 @@ const MyNavbar = ({ myTitle, iconProp }) => { //props.title, props.icon
                         About Us
                     </Link>
                 </Nav>
+                <Nav>
+                    <Link to="/register" className="nav-link">
+                        SignUp
+                    </Link>
+                </Nav>
+                <Nav>
+                    <Link to="/login" className="nav-link">
+                        Login
+                    </Link>
+                </Nav>
             </Navbar.Collapse>
         </Navbar>
     )
