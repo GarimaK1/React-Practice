@@ -10,17 +10,21 @@ import Home from "./components/pages/Home";
 import AboutUs from "./components/pages/AboutUs";
 import ContactState from './context/contact/ContactState';
 import AuthState from './context/auth/AuthState';
+import AlertState from './context/alert/AlertState';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Alerts from './components/layout/Alerts';
 
 const App = () => {
   return (
     <AuthState>
       <ContactState>
+        <AlertState>
         <Router>
 
           <Navbar />
           <Container fluid style={{ width: '70%', marginTop: '0.75rem' }}>
+            <Alerts />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/about" component={AboutUs} />
@@ -30,6 +34,7 @@ const App = () => {
           </Container>
 
         </Router>
+        </AlertState>
       </ContactState>
     </AuthState>
   );

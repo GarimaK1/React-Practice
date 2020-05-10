@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import AlertContext from '../../context/alert/alertContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from "react-bootstrap/Container";
@@ -6,6 +7,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const Register = () => {
+    const alertContext = useContext(AlertContext);
+    const { setAlert } = alertContext;
+
     const [user, setUser] = useState({
         name: '',
         email: '',
@@ -21,7 +25,16 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('inside handlesubmit');
+        console.log(password);
+        console.log(password2);
+        if (name === '' || email === '' || password === '') {
+            setAlert('Please enter all fields', 'danger');
+        } else if (password !== password2) {
+            console.log('here');
+            setAlert('Password entries do not match', 'danger');
+        } else {
+            console.log('inside handlesubmit');
+        }
     }
 
     return (
