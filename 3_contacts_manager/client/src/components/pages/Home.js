@@ -1,18 +1,20 @@
 import React from 'react';
 import Contacts from '../contacts/Contacts';
 import ContactForm from "../contacts/ContactForm";
+import ContactFilter from "../contacts/ContactFilter";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const Home = () => {
     return (
-        <Container fluid >            
+        <Container fluid >
             <Row >
                 <Col >
                     <ContactForm />
                 </Col>
                 <Col >
+                    <ContactFilter />
                     <Contacts />
                 </Col>
             </Row>

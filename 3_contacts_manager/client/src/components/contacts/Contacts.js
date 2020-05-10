@@ -9,11 +9,19 @@ const Contacts = () => {
     // Refer 'Putting it together with Context.Provider' under 'useContext' API reference to understand better.
     const contactContext = useContext(ContactContext);
 
-    const { contacts } = contactContext;
+    const { contacts, filtered } = contactContext;
 
     return (
         <Fragment>
-            {contacts.map(contact => <ContactItem key={contact.id} contact={contact} />) }
+            <h4 style={{ margin: '0.1rem 0.3rem' }}>My Contacts</h4>
+            {(contacts.length === 0) && <h6 style={{ margin: '1.5rem 0.3rem'}}>
+                No contacts found. Please add a new contact.
+            </h6>}
+            {
+                filtered
+                ? filtered.map(contact => <ContactItem key={contact.id} contact={contact} />)
+                : contacts.map(contact => <ContactItem key={contact.id} contact={contact} />)
+            }
         </Fragment>
     )
 }

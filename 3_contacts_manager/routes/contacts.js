@@ -35,7 +35,7 @@ router.get('/', auth, async (req, res) => {
 router.post('/', auth, [
     check('name', 'Name is required').notEmpty(), // contact should have a name
     check('email', 'Please enter valid email address').isEmail(),
-    check('phone', 'Please enter valid phone number').optional().matches(/^[2-9]\d{2}-[1-9]\d{2}-\d{4}$/)
+    check('phone', 'Please enter valid phone number').optional().matches(/^[1-9]\d{2}-[1-9]\d{2}-\d{4}$/)
     // check('phone', 'Please enter valid phone number').optional({ checkFalsy : true, nullable: true }).isMobilePhone()
 ], async (req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
