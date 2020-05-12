@@ -1,4 +1,6 @@
 import React, { useReducer } from 'react';
+import axios from 'axios';
+import setAuthToken from "../../utils/setAuthToken";
 import AuthContext from './authContext';
 import authReducer from "./authReducer";
 import {
@@ -24,14 +26,72 @@ const AuthState = (props) => {
     const [state, dispatch] = useReducer(authReducer, initialState);
 
     // Load user (checks which user is logged in and get user data)
+    const loadUser = async () => {
+        // Load token into common header.
+        if (localStorage.token) {
+            setAuthToken(localStorage.token);
+        }
+        try {
+            const resp = await axios.get('/api/auth');
+            console.log('inside loadUser');
+            // console.log(resp);
+            dispatch({ type: USER_LOADED, payload: resp.data.user })
+        } catch (error) {
+            dispatch({ type: AUTH_ERROR, payload: error.response.data.message });
+        }
+    }
 
     // Register user (register user, get token)
+    const register = async (formData) => {
+        // Because we are using axios as http client, we need to set some headers.
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        try {
+            const resp = await axios.post('/api/users', formData, config);
+            // console.log(resp);
+            dispatch({ type: REGISTER_SUCCESS, payload: resp.data.token });
+            loadUser(); 
+        } catch (error) {
+            // https://github.com/axios/axios#handling-errors
+            // To see how to catch response with status code other than 2xx, 
+            // Refer: https://gist.github.com/fgilio/230ccd514e9381fafa51608fcf137253
+            // console.log(error.response);
+            dispatch({ type: REGISTER_FAIL, payload: error.response.data.message });
+        }
+    }
 
     // Login user (Login user, get token)
+    const login = async (formData) => {
+        // Because we are using axios as http client, we need to set some headers.
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        try {
+            const resp = await axios.post('/api/auth', formData, config);
+            // console.log(resp);
+            dispatch({ type: LOGIN_SUCCESS, payload: resp.data.token });
+            loadUser();
+        } catch (error) {
+            // https://github.com/axios/axios#handling-errors
+            // To see how to catch response with status code other than 2xx, 
+            // Refer: https://gist.github.com/fgilio/230ccd514e9381fafa51608fcf137253
+            // console.log(error.response);
+            dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
+        }
+    }
 
     // Logout (logout, remove token, clear state)
+    const logout = () => dispatch({type: LOGOUT});
 
     // Clear errors (clear errors from state)
+    const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
     return (
         <AuthContext.Provider
@@ -40,7 +100,12 @@ const AuthState = (props) => {
                 isAuthenticated: state.isAuthenticated,
                 loading: state.loading,
                 user: state.user,
-                error: state.error
+                error: state.error,
+                register,
+                loadUser,
+                login,
+                logout,
+                clearErrors
             }}
         >
             {props.children}

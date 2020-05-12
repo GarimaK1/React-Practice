@@ -1,14 +1,31 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const Register = () => {
+const Register = (props) => {
+    const authContext = useContext(AuthContext);
     const alertContext = useContext(AlertContext);
+    
     const { setAlert } = alertContext;
+    const { register, error, clearErrors, isAuthenticated } = authContext;
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            // if user is already authenticted, don't show register. Redirect to Home page '/'.
+            props.history.push('/');
+        }
+        if (error === 'User already exists!') {
+            setAlert(error, 'danger');
+            clearErrors();
+        }
+        // eslint-disable-next-line 
+        // because we don't want to add clearErrors, setAlert as dependencies.
+    }, [error, isAuthenticated, props.history]);
 
     const [user, setUser] = useState({
         name: '',
@@ -25,15 +42,18 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(password);
-        console.log(password2);
         if (name === '' || email === '' || password === '') {
             setAlert('Please enter all fields', 'danger');
-        } else if (password !== password2) {
-            console.log('here');
+        } else 
+        if (password !== password2) {
             setAlert('Password entries do not match', 'danger');
         } else {
             console.log('inside handlesubmit');
+            register({
+                name,
+                email,
+                password
+            });
         }
     }
 
@@ -46,14 +66,14 @@ const Register = () => {
                         <Form.Group>
                             {/* <Form.Label>Enter Name:</Form.Label> */}
                             <Form.Control 
-                            type="text" 
-                            // size="sm" 
-                            placeholder="Name" 
-                            name="name" 
-                            value={name} 
-                            onChange={handleChange} 
-                            required 
-                        />
+                                type="text" 
+                                // size="sm" 
+                                placeholder="Name" 
+                                name="name" 
+                                value={name} 
+                                onChange={handleChange} 
+                                required 
+                            />
                         </Form.Group>
                         <Form.Group>
                             {/* <Form.Label>Enter Email:</Form.Label> */}

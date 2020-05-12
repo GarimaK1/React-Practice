@@ -4,6 +4,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import PrivateRoute from "./components/routing/PrivateRoute";
+import setAuthToken from './utils/setAuthToken';
 import Container from 'react-bootstrap/Container';
 import Navbar from './components/layout/Navbar';
 import Home from "./components/pages/Home";
@@ -14,6 +16,11 @@ import AlertState from './context/alert/AlertState';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alerts from './components/layout/Alerts';
+
+console.log('Above app.js');
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 const App = () => {
   return (
@@ -26,7 +33,7 @@ const App = () => {
           <Container fluid style={{ width: '70%', marginTop: '0.75rem' }}>
             <Alerts />
             <Switch>
-              <Route exact path="/" component={Home} />
+              <PrivateRoute exact path="/" component={Home} />
               <Route exact path="/about" component={AboutUs} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />

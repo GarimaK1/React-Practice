@@ -24,6 +24,32 @@ the value of these global objects will be available throughout the project.
 using this package from npm to validate input on arrival at each end-point
 e.g. if 'name' is required in mongoose model, input (form/via postman) must have 'name'
 
+-- axios used as http client for this project. Axios related links I referenced-
+To see how to catch response with status code other than 2xx, 
+https://github.com/axios/axios#handling-errors
+https://gist.github.com/fgilio/230ccd514e9381fafa51608fcf137253
+https://stackoverflow.com/questions/43051291/attach-authorization-header-for-all-axios-requests
+
+-- setAuthToken questions
+Q) Why do we only set the token in App.js and not the loadUser?
+Ans) Because when App.js first loads and there is no user data, we don't want to see 401 unauthorized.
+With loadUser, we need token to get data. Therefore, just quietly check for token in App.js.
+ 
+setAuthToken is used once in App.js and inside loadUser() in AuthState.
+loadUser() is used in register(), login(), Home page. 
+
+If you only used the setAuthToken function in the App.js, it will only check for the token
+on the initial loading of the application. If user is not loaded/logged in/just registered, there
+will be no token and 'x-auth-token' header will be removed.
+
+We call setAuthToken in loadUser, and loadUser is called on registration. loadUser is also called 
+when Home page loads. So, when a user registers or home page reloads, loadUser is run and token is
+sent for all subsequesnt axios calls. 
+
+-- Proteted routes
+HomePage got protected against unauthorized viewing by using PrivateRoute.js 
+
+================================================================================================================
 Note: I started using Material UI and found it to be very extensive. Time was short.
 So I switched back to react-bootstrap. Its not the best but it is very intuitive/easy for me to use .
 -- React front-end created using Material UI. Everything relating to react inside 'client-MaterialUI' folder!
@@ -57,3 +83,4 @@ In src/index.js, import the css file:
     import './index.css';
 Disadvantage of method-2 : Includes unnessary Roboto fonts too that are not used by Material UI.
                             So just delete the unwanted font files and usage if you want.
+================================================================================================================

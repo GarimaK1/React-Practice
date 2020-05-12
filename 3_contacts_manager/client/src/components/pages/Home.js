@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import AuthContext from '../../context/auth/authContext';
 import Contacts from '../contacts/Contacts';
 import ContactForm from "../contacts/ContactForm";
 import ContactFilter from "../contacts/ContactFilter";
@@ -7,6 +8,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const Home = () => {
+    const authContext = useContext(AuthContext);
+
+    useEffect(() => {
+        authContext.loadUser();
+        // eslint-disable-next-line
+    }, []);
+
     return (
         <Container fluid >
             <Row >

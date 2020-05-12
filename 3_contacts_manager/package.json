@@ -14,7 +14,10 @@
     "MERN",
     "mongoDB",
     "express",
-    "node"
+    "node",
+    "react-router-dom",
+    "react-bootstrap",
+    "axios"
   ],
   "author": "garima",
   "license": "ISC",

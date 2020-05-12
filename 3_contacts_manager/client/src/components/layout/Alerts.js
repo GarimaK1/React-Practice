@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import AlertContext from "../../context/alert/alertContext";
 import Alert from 'react-bootstrap/Alert';
 
