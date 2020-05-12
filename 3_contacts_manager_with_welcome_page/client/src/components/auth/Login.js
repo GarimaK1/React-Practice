@@ -17,7 +17,7 @@ const Login = (props) => {
     useEffect(() => {
         if (isAuthenticated) {
             // if user is already authenticted, don't show login. Redirect to Home page '/'.
-            props.history.push('/');
+            props.history.push('/app');
         }
         if (error === 'Invalid credentials!') {
             setAlert(error, 'danger');

@@ -23,12 +23,17 @@ const MyNavbar = ({ myTitle, iconProp }) => { //props.title, props.icon
         <div className="d-flex justify-content-end flex-fill"> 
             <Nav>
                 <Link to="/register" className="nav-link">
-                    SignUp
+                    Register
                 </Link>
             </Nav>
             <Nav>
                 <Link to="/login" className="nav-link">
                     Login
+                </Link>
+            </Nav>
+            <Nav>
+                <Link to="/about" className="nav-link">
+                    About Us
                 </Link>
             </Nav>
         </div>
@@ -39,6 +44,16 @@ const MyNavbar = ({ myTitle, iconProp }) => { //props.title, props.icon
             <Navbar.Text className="pl-2">Hello</Navbar.Text>
             {user && <Navbar.Text className="pr-2">, {user && user.name}!</Navbar.Text>}
            
+            <Nav>
+                <Link to="/app" className="nav-link">
+                    My Contacts
+                </Link>
+            </Nav>
+            <Nav>
+                <Link to="/about" className="nav-link">
+                    About Us
+                </Link>
+            </Nav>
             <Nav>
                 <Link to="#" onClick={handleLogout} className="nav-link">
                     Logout
@@ -55,11 +70,6 @@ const MyNavbar = ({ myTitle, iconProp }) => { //props.title, props.icon
                 </Navbar.Brand>
             </Link>
             {isAuthenticated ? authLinks : guestLinks}
-            <Nav>
-                <Link to="/about" className="nav-link">
-                    About Us
-                </Link>
-            </Nav>
         </Navbar>
     )
 }

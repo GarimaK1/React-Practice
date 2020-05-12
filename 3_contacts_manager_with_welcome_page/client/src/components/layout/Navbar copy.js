@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import AuthContext from "../../context/auth/authContext";
-import ContactContext from "../../context/contact/contactContext";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from "react-router-dom";
@@ -9,21 +8,17 @@ import { Link } from "react-router-dom";
 const MyNavbar = ({ myTitle, iconProp }) => { //props.title, props.icon
 
     const authContext = useContext(AuthContext);
-    const contactContext = useContext(ContactContext);
-
     const { isAuthenticated, user, logout } = authContext;
-    const { clearContacts } = contactContext;
 
     const handleLogout = () => {
         logout();
-        clearContacts();
     }
 
     const guestLinks = (
-        <div className="d-flex justify-content-end flex-fill"> 
+        <Fragment>
             <Nav>
                 <Link to="/register" className="nav-link">
-                    SignUp
+                    Register
                 </Link>
             </Nav>
             <Nav>
@@ -31,20 +26,20 @@ const MyNavbar = ({ myTitle, iconProp }) => { //props.title, props.icon
                     Login
                 </Link>
             </Nav>
-        </div>
+        </Fragment>
     );
 
     const authLinks = (
-        <div className="d-flex justify-content-end flex-grow-1"> 
-            <Navbar.Text className="pl-2">Hello</Navbar.Text>
-            {user && <Navbar.Text className="pr-2">, {user && user.name}!</Navbar.Text>}
+        <Fragment> 
+            <Navbar.Text>Hello</Navbar.Text>
+            {user && <Navbar.Text>, {user && user.name}!</Navbar.Text>}
            
             <Nav>
                 <Link to="#" onClick={handleLogout} className="nav-link">
                     Logout
                 </Link>
             </Nav>
-        </div>
+        </Fragment>
     );
 
     return (
@@ -54,12 +49,12 @@ const MyNavbar = ({ myTitle, iconProp }) => { //props.title, props.icon
                     <i className={iconProp}></i>   {myTitle}
                 </Navbar.Brand>
             </Link>
-            {isAuthenticated ? authLinks : guestLinks}
             <Nav>
                 <Link to="/about" className="nav-link">
                     About Us
                 </Link>
             </Nav>
+            {isAuthenticated ? authLinks : guestLinks}
         </Navbar>
     )
 }
