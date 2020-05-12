@@ -60,13 +60,17 @@ const ContactState = (props) => {
             // console.log(resp);
             dispatch({ type: ADD_CONTACT, payload: resp.data.contact });
         } catch (error) {
-            // console.log(error.response);
-            // console.log(error.response.data.errors[0].msg);
-            // console.log(error.response.data.errors.length);
-            if (error.response.data.errors.length > 0) 
+            console.log(error.response);
+            console.log(error.response.data.errors[0].msg);
+            console.log(error.response.data.errors.length);
+            if (error.response.data.errors.length > 0) {
+                console.log('contact state: error.response.data.errors[0].msg')
                 dispatch({ type: CONTACT_ERROR, payload: error.response.data.errors[0].msg });
-            else if (error.response.data.message)
+            }
+            else if (error.response.data.message) {
+                console.log('contact state: error.response.data.message')
                 dispatch({ type: CONTACT_ERROR, payload: error.response.data.message });
+            }
         }
     }
 
@@ -105,8 +109,17 @@ const ContactState = (props) => {
             // console.log(resp);
             dispatch({ type: UPDATE_CONTACT, payload: resp.data });
         } catch (error) {
-            console.log(error);
-            dispatch({ type: CONTACT_ERROR, payload: error.response.data.message });
+            console.log(error.response);
+            console.log(error.response.data.errors[0].msg);
+            console.log(error.response.data.errors.length);
+            if (error.response.data.errors.length > 0) {
+                console.log('contact state: error.response.data.errors[0].msg')
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data.errors[0].msg });
+            }
+            else if (error.response.data.message) {
+                console.log('contact state: error.response.data.message')
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data.message });
+            }
         }
     }
 

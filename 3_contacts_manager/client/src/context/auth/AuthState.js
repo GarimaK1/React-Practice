@@ -38,7 +38,9 @@ const AuthState = (props) => {
             dispatch({ type: USER_LOADED, payload: resp.data.user })
         } catch (error) {
             console.log(error.response);
-            dispatch({ type: AUTH_ERROR, payload: error.response.data.message });
+            if (error.response.data.message) {
+                dispatch({ type: AUTH_ERROR, payload: error.response.data.message });
+            }
         }
     }
 
@@ -61,7 +63,9 @@ const AuthState = (props) => {
             // To see how to catch response with status code other than 2xx, 
             // Refer: https://gist.github.com/fgilio/230ccd514e9381fafa51608fcf137253
             // console.log(error.response);
-            dispatch({ type: REGISTER_FAIL, payload: error.response.data.message });
+            if (error.response.data.message) {
+                dispatch({ type: REGISTER_FAIL, payload: error.response.data.message });
+            }
         }
     }
 
@@ -83,8 +87,11 @@ const AuthState = (props) => {
             // https://github.com/axios/axios#handling-errors
             // To see how to catch response with status code other than 2xx, 
             // Refer: https://gist.github.com/fgilio/230ccd514e9381fafa51608fcf137253
-            // console.log(error.response);
-            dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
+            console.log(error.response.data);
+            if (error.response.data)
+                dispatch({ type: LOGIN_FAIL, payload: error.response.data });
+            else if (error.response.data.message)
+                dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
         }
     }
 

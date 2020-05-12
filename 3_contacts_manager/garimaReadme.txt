@@ -1,3 +1,8 @@
+Note to self:
+I think after the problems that I faced in setting alerts for this project,
+it is very important that you have a uniform method of conveying messages
+from the backend API. That make setting alerts such a breeze.
+
 -- Basic funda for this application:
 We are using JWT to authenticate users/tokens and get login info from token.
 Inside the token, we are sending user id as payload.

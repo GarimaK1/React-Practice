@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useContext, useEffect } from 'react';
 import ContactContext from '../../context/contact/contactContext';
+import AlertContext from '../../context/alert/alertContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -16,7 +17,10 @@ function handleChange(e) {
 const ContactForm = () => {
 
     const contactContext = useContext(ContactContext);
-    const { addContact, current, clearCurrent, updateContact } = contactContext;
+    const alertContext = useContext(AlertContext);
+
+    const { addContact, current, clearCurrent, updateContact, error } = contactContext;
+    const { setAlert } = alertContext;
 
     const [contact, setContact] = useState({
         name: '',
@@ -36,7 +40,12 @@ const ContactForm = () => {
                 type: 'personal'
             });
         }
-    }, [current, contactContext]);
+        if (error) {
+            console.log('here!');
+            setAlert(error, 'danger');
+            // clearErrors();
+        }
+    }, [error, current, contactContext]);
 
     const { name, phone, email, type } = contact;
 
