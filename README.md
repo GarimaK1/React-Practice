@@ -1,5 +1,4 @@
-# React-Practice
-## React based projects
+# React-Practice: React based projects
 
 ## Description of folders in this repository:
 
