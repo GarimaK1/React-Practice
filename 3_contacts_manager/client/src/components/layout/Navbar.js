@@ -1,10 +1,52 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import AuthContext from "../../context/auth/authContext";
+import ContactContext from "../../context/contact/contactContext";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from "react-router-dom";
 
 const MyNavbar = ({ myTitle, iconProp }) => { //props.title, props.icon
+
+    const authContext = useContext(AuthContext);
+    const contactContext = useContext(ContactContext);
+
+    const { isAuthenticated, user, logout } = authContext;
+    const { clearContacts } = contactContext;
+
+    const handleLogout = () => {
+        logout();
+        clearContacts();
+    }
+
+    const guestLinks = (
+        <div className="d-flex justify-content-end flex-fill"> 
+            <Nav>
+                <Link to="/register" className="nav-link">
+                    SignUp
+                </Link>
+            </Nav>
+            <Nav>
+                <Link to="/login" className="nav-link">
+                    Login
+                </Link>
+            </Nav>
+        </div>
+    );
+
+    const authLinks = (
+        <div className="d-flex justify-content-end flex-grow-1"> 
+            <Navbar.Text className="pl-2">Hello</Navbar.Text>
+            {user && <Navbar.Text className="pr-2">, {user && user.name}!</Navbar.Text>}
+           
+            <Nav>
+                <Link to="#" onClick={handleLogout} className="nav-link">
+                    Logout
+                </Link>
+            </Nav>
+        </div>
+    );
+
     return (
         <Navbar bg="dark" variant="dark" expand="sm" >
             <Link to="/">
@@ -12,20 +54,12 @@ const MyNavbar = ({ myTitle, iconProp }) => { //props.title, props.icon
                     <i className={iconProp}></i>   {myTitle}
                 </Navbar.Brand>
             </Link>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-                <Nav>
-                    {/* Using 'link to' instead of 'a href' to preserve state  */}
-                    <Link to="/" className="nav-link">
-                        Home
-                    </Link>
-                </Nav>
-                <Nav>
-                    <Link to="/about" className="nav-link">
-                        About Us
-                    </Link>
-                </Nav>
-            </Navbar.Collapse>
+            {isAuthenticated ? authLinks : guestLinks}
+            <Nav>
+                <Link to="/about" className="nav-link">
+                    About Us
+                </Link>
+            </Nav>
         </Navbar>
     )
 }
