@@ -6,7 +6,8 @@
   "scripts": {
     "server": "nodemon server.js",
     "reactClient": "npm start --prefix client",
-    "app": "concurrently \"npm run server\" \"npm run reactClient\""
+    "app": "concurrently \"npm run server\" \"npm run reactClient\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
   },
   "keywords": [
     "react",

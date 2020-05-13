@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://garima:garima@contactsmanager-wfkzp.mongodb.net/ContactsManager",
+  "jwtSecret": "my_secret_that_should_be_very_long_for_secutity_purposes"
+}
