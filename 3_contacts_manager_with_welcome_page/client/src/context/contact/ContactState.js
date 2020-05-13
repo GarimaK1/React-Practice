@@ -13,7 +13,8 @@ import {
     SET_CURRENT,
     UPDATE_CONTACT, 
     CLEAR_FILTER,
-    CONTACT_ERROR 
+    CONTACT_ERROR,
+    CLEAR_ERRORS 
 } from '../types';
 
 const ContactState = (props) => {
@@ -27,6 +28,9 @@ const ContactState = (props) => {
 
     const [state, dispatch] = useReducer(contactReducer, initialState);
 
+    // Clear errors (clear errors from state)
+    const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
+
     // Get contacts for user
     const getContacts = async () => {
         try {
@@ -35,10 +39,14 @@ const ContactState = (props) => {
             dispatch({ type: GET_CONTACTS, payload: resp.data });
         } catch (error) {
             // console.log(error);
-            // console.log(error.response);
+            console.log(error.response);
             // console.log(error.response.data.message);
-            if (error.response.data.message) {
+            if (error.response.data.errors) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data.errors[0].msg });
+            } else if (error.response.data.message) {
                 dispatch({ type: CONTACT_ERROR, payload: error.response.data.message });
+            } else if (error.response.data) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data });
             } else if (error.response) {
                 dispatch({ type: CONTACT_ERROR, payload: error.response });
             } else if (error) {
@@ -63,10 +71,17 @@ const ContactState = (props) => {
             // console.log(error.response);
             // console.log(error.response.data.errors[0].msg);
             // console.log(error.response.data.errors.length);
-            if (error.response.data.errors.length > 0) 
+            if (error.response.data.errors) {
                 dispatch({ type: CONTACT_ERROR, payload: error.response.data.errors[0].msg });
-            else if (error.response.data.message)
+            } else if (error.response.data.message) {
                 dispatch({ type: CONTACT_ERROR, payload: error.response.data.message });
+            } else if (error.response.data) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data });
+            } else if (error.response) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response });
+            } else if (error) {
+                dispatch({ type: CONTACT_ERROR, payload: error });
+            }
         }
     }
 
@@ -78,7 +93,17 @@ const ContactState = (props) => {
             dispatch({ type: DELETE_CONTACT, payload: id });
         } catch (error) {
             console.log(error.response);
-            dispatch({ type: CONTACT_ERROR, payload: error.response.data.message });
+            if (error.response.data.errors) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data.errors[0].msg });
+            } else if (error.response.data.message) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data.message });
+            } else if (error.response.data) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data });
+            } else if (error.response) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response });
+            } else if (error) {
+                dispatch({ type: CONTACT_ERROR, payload: error });
+            }
         }
         
     }
@@ -105,8 +130,20 @@ const ContactState = (props) => {
             // console.log(resp);
             dispatch({ type: UPDATE_CONTACT, payload: resp.data });
         } catch (error) {
-            console.log(error);
-            dispatch({ type: CONTACT_ERROR, payload: error.response.data.message });
+            // console.log(error.response);
+            // console.log(error.response.data.errors[0].msg);
+            // console.log(error.response.data.errors.length);
+            if (error.response.data.errors) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data.errors[0].msg });
+            } else if (error.response.data.message) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data.message });
+            } else if (error.response.data) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response.data });
+            } else if (error.response) {
+                dispatch({ type: CONTACT_ERROR, payload: error.response });
+            } else if (error) {
+                dispatch({ type: CONTACT_ERROR, payload: error });
+            }
         }
     }
 
@@ -135,7 +172,8 @@ const ContactState = (props) => {
                 filterContacts,
                 clearFilter,
                 getContacts,
-                clearContacts
+                clearContacts,
+                clearErrors
             }}
         >
             { props.children }

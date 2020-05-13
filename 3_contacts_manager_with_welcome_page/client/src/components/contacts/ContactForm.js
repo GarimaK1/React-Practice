@@ -17,7 +17,7 @@ function handleChange(e) {
 const ContactForm = () => {
 
     const contactContext = useContext(ContactContext);
-    const { addContact, current, clearCurrent, updateContact, error } = contactContext;
+    const { addContact, current, clearCurrent, updateContact, error, clearErrors } = contactContext;
 
     const alertContext = useContext(AlertContext);
     const { setAlert } = alertContext;
@@ -41,10 +41,10 @@ const ContactForm = () => {
             });
         }
         if (error) {
-            console.log('here!');
             setAlert(error, 'danger');
-            // clearErrors();
+            clearErrors();
         }
+        // eslint-disable-next-line 
     }, [error, current, contactContext]);
 
     const { name, phone, email, type } = contact;

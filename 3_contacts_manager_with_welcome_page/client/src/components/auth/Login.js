@@ -22,6 +22,9 @@ const Login = (props) => {
         if (error === 'Invalid credentials!') {
             setAlert(error, 'danger');
             clearErrors();
+        } else if (error) {
+            setAlert(error, 'danger');
+            clearErrors();
         }
         // because we don't want to add clearErrors, setAlert as dependencies.
         // eslint-disable-next-line 
