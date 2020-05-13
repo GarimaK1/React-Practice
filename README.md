@@ -2,11 +2,13 @@
 
 ## Description of folders in this repository:
 
- 1 my-app: Tic-tac-toe game on official React website
+### Tic-tac-toe game on official React website
+
+1 my-app: Using prop drilling and class components
 
 The following projects use the GitHub API for backend. E.g. users, repository links etc.
 
-Projct description: Using search bar, we can search github users according to their guthub username/login.
+### Projct description: Using search bar, we can search github users according to their guthub username/login.
 
 2_github_finder: Using prop drilling and class components
 
@@ -16,7 +18,7 @@ Projct description: Using search bar, we can search github users according to th
 
 The following projects are MERN stack. 
 
-Projct description: Users can add/update/delete contacts online. Only users who create contacts can edit or delete them.
+### Projct description: Users can add/update/delete contacts online. Only users who create contacts can edit or delete them.
 
 3_contacts_manager: MERN stack app. Context API. Functional components + React Hooks. Auth error on Home page=landing page.
 
