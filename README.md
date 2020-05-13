@@ -1,10 +1,10 @@
 # React-Practice
-React based projects
+## React based projects
 
-Description of folders in this repository:
-1 my-app: Tic-tac-toe game on official React website
+## Description of folders in this repository:
+### 1 my-app: Tic-tac-toe game on official React website
 
-The following projects use the GitHub API for backend. E.g. users, repository links etc.
+### The following projects use the GitHub API for backend. E.g. users, repository links etc.
 Projct description: Using search bar, we can search github users according to their guthub username/login.
 2_github_finder: Using prop drilling and class components
 2_github_finder_hooks: Using prop drilling and functional components, React hooks
