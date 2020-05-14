@@ -23,3 +23,4 @@ The following projects are MERN stack.
 3_contacts_manager: MERN stack app. Context API. Functional components + React Hooks. Auth error on Home page=landing page.
 
 3_contacts_manager_with_welcome_page: MERN stack app. Context API. Functional components + React Hooks. Added welcome page=landing page to avoid Auth error on first page.
+Note: This project is same as ContactsManagerMERN. Created a separate repository for it to use heroku for deployment. This needed heroku to be added as remote too.
