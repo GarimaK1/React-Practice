@@ -1,37 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import LogItem from './LogItem';
 import ShowLoading from '../layout/ShowLoading';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getLogs } from '../../actions/logActions';
 
-const Logs = () => {
-    const [logs, setLogs] = useState([]);
-    const [loading, setLoading] = useState(false);
-
+const Logs = ({ log: { logs, loading }, getLogs }) => {
     useEffect(() => {
         getLogs();
         // eslint-disable-next-line
     }, []);
 
-    const getLogs = async () => {
-        setLoading(true);
-        try {
-            const res = await fetch('/logs');
-            // console.log(res);
-            const data = await res.json();
-            // console.log(data);
-            setLogs(data);
-            setLoading(false);
-        } catch (error) {
-            console.log(error);   
-        }
-    };
-
-    if (loading) {
+    if (loading || logs === null) { // because logs is null at first, before it fetches logs from API
         return <ShowLoading />
     }
 
     if (!loading && logs.length === 0) {
         return (
-            <p>No logs present.</p>
+            <ul className="collection with-header">
+                <li className="collection-header">
+                    <h4>System Logs</h4>
+                </li>
+                <li className="collection-item">No logs present.</li>
+            </ul>
         )
     } else {
         // console.log(logs);
@@ -62,4 +53,14 @@ const Logs = () => {
     */
 }
 
-export default Logs;
+Logs.propTypes = {
+    log: PropTypes.object.isRequired,
+    getLogs: PropTypes.func.isRequired
+};
+
+// get anything from app level state as prop in this component.
+const mapStateToProps = (state) => ({
+    log: state.log
+});
+
+export default connect(mapStateToProps, { getLogs })(Logs);

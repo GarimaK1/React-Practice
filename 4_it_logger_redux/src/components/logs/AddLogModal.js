@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addLog } from '../../actions/logActions';
 
-const AddLogModal = () => {
+const AddLogModal = ({ addLog }) => {
     const [message, setMessage] = useState('');
     const [tech, setTech] = useState('');
     const [attention, setAttention] = useState(false);
@@ -10,7 +13,18 @@ const AddLogModal = () => {
         if (message === '' || tech === '') {
             M.toast({ html: 'Please enter a message and technician!', classes: 'rounded' });
         } else {
-            console.log(message + ' ' + tech + ' ' + attention);
+            // console.log(message + ' ' + tech + ' ' + attention);
+            const newLog = {
+                message,
+                tech,
+                attention,
+                date: new Date()
+            };
+
+            addLog(newLog);
+
+            M.toast({ html: `Log added by ${tech}`});
+
             setMessage('');
             setAttention(false);
             setTech('');
@@ -84,4 +98,9 @@ const modalStyle = {
     height: '70%'
 };
 
-export default AddLogModal;
+AddLogModal.propTypes = {
+    addLog: PropTypes.func.isRequired
+};
+
+// not bringing any state as prop to component. So putting null in place of 'mapStateToProps'
+export default connect(null, { addLog })(AddLogModal);
