@@ -1,34 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import TechItem from './TechItem';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getTechs } from '../../actions/techActions';
 
-const ListTechModal = () => {
-    const [techs, setTechs] = useState([]);
-    const [loading, setLoading] = useState(false);
+const ListTechModal = ({ getTechs, tech: { techs, loading} }) => {
 
     useEffect(() => {
         getTechs();
         // eslint-disable-next-line
     }, []);
 
-    const getTechs = async () => {
-        try {
-            setLoading(true);
-            const resp = await fetch('/techs');
-            const data = await resp.json();
-
-            setTechs(data);
-            setLoading(false);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    if (!loading && techs.length === 0) {
+    if (!loading && (techs === null || techs.length === 0)) {
         return (
             <div id="list-tech-modal" className="modal" style={{ width: '50%' }}>
                 <div className="modal-content">
-                    <h4>Technician List</h4>
-                    <h6>No technicians found.</h6>
+                    <ul className="collection">
+                        <li className="collection-header">
+                            <h4>Technician List</h4>
+                        </li>
+                        <li className="collection-item">No technicians found.</li>
+                    </ul>
                 </div>
             </div>
         )
@@ -51,7 +43,7 @@ const ListTechModal = () => {
                             className="modal-close waves-effect waves-green btn"
                         >
                             Close
-                    </a>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -60,4 +52,13 @@ const ListTechModal = () => {
 
 }
 
-export default ListTechModal;
+ListTechModal.propTypes = {
+    tech: PropTypes.object.isRequired,
+    getTechs: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+    tech: state.tech
+});
+
+export default connect(mapStateToProps, { getTechs })(ListTechModal);

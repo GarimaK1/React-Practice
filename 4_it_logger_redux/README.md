@@ -1,3 +1,18 @@
+## Garima Notes:
+Some pretty good questions and answers about React concepts on Lecture#87.
+Logs component do not refresh after an update?
+Why we dont use contolled input in here?
+For Video#87, doubts about search functionality & onChange/onInput events
+Refer to understand react with hooks:
+-- https://overreacted.io/a-complete-guide-to-useeffect/
+-- https://github.com/bradtraversy/contact-keeper/tree/hookfix#this-branch-has-been-refactored-to-take-a-more-hook-orientated-approach
+
+Searching:
+React supports onChange event for input, not onInput like normal HTML & DOM. 
+So in search functionality we have no other option but to fire the search action on every keystroke entry.
+Or, use a form/submit button to hit searchLogs.
+--------------------------------------------------------------------------------------------------------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

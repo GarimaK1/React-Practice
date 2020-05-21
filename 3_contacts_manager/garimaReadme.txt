@@ -51,8 +51,11 @@ We call setAuthToken in loadUser, and loadUser is called on registration. loadUs
 when Home page loads. So, when a user registers or home page reloads, loadUser is run and token is
 sent for all subsequesnt axios calls. 
 
--- Proteted routes
+-- Protected routes
 HomePage got protected against unauthorized viewing by using PrivateRoute.js 
+
+-- https://github.com/bradtraversy/contact-keeper/tree/hookfix#this-branch-has-been-refactored-to-take-a-more-hook-orientated-approach
+-- https://overreacted.io/a-complete-guide-to-useeffect/
 
 ================================================================================================================
 Note: I started using Material UI and found it to be very extensive. Time was short.

@@ -23,3 +23,16 @@ The following projects are MERN stack.
 3_contacts_manager: MERN stack app. Context API. Functional components + React Hooks. Auth error on Home page=landing page.
 
 3_contacts_manager_with_welcome_page: MERN stack app. Context API. Functional components + React Hooks. Added welcome page=landing page to avoid Auth error on first page.
+
+### Projct description: Intro to redux with react. materializecss for UI design.
+
+4_it_logger_redux: React front-end, 'json-server' backend. 'redux' for app level state management. 'redux-thunk' for async calls in actions. 
+'redux-devtools-extension' for easy access to redux devtools on chrome. 'react-redux' to connect react and redux. 
+Users can add/update/delete logs. Add/delete technicians. json-server as backend API. materializecss for UI design.
+
+### Check package.json scripts section to see how to start each application using npm.
+
+### Refer to understand react with hooks:
+-- https://overreacted.io/a-complete-guide-to-useeffect/
+-- https://github.com/bradtraversy/contact-keeper/tree/hookfix#this-branch-has-been-refactored-to-take-a-more-hook-orientated-approach
+

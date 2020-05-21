@@ -33,10 +33,14 @@ const Search = ({ clearUsers, searchUsers, setAlert }) => {
                     onChange={onChange}
                 />
             </Form.Group>
-            <Button variant="dark" type="submit" className="btn-block btn-sm">
-                {/* above same as <Button variant="dark" type="submit" size="sm" block> */}
-                    Submit
-                </Button>
+            <Button 
+                variant="dark" 
+                type="submit" 
+                className="btn-block btn-sm"
+            >
+            {/* above same as <Button variant="dark" type="submit" size="sm" block> */}
+                Submit
+            </Button>
             <Button variant="light"
                 type="button"
                 size="sm"

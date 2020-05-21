@@ -1,11 +1,11 @@
 {
   "logs": [
     {
-      "message": "Workstation 008 needs attention",
-      "tech": "Sam Smith",
+      "id": 1,
+      "message": "Workstation 008 broken",
+      "tech": "Sara Wilson",
       "attention": true,
-      "date": "2020-05-20T01:55:45.985Z",
-      "id": 1
+      "date": "2020-05-21T15:40:56.250Z"
     },
     {
       "message": "Install Firefox in machine #12",
