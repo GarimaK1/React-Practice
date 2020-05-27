@@ -2,6 +2,8 @@ In depth: When and why are setState() calls batched?
 
 https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973
 
+https://scotch.io/starters/react/returning-jsx
+
 # React-Practice: React based projects
 
 ## Description of folders in this repository:
