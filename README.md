@@ -6,6 +6,10 @@ The Many Ways to Return JSX
 
 https://scotch.io/starters/react/returning-jsx
 
+Where to Initialize State in React
+
+https://daveceddia.com/where-initialize-state-react/
+
 # React-Practice: React based projects
 
 ## Description of folders in this repository:
