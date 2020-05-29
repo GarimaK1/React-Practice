@@ -6,6 +6,10 @@ The Many Ways to Return JSX
 
 https://scotch.io/starters/react/returning-jsx
 
+Where to Initialize State in React
+
+https://daveceddia.com/where-initialize-state-react/
+
 # React-Practice: React based projects
 
 ## Description of folders in this repository:
@@ -19,6 +23,8 @@ The following projects use the GitHub API for backend. E.g. users, repository li
 ### Projct description: Using search bar, we can search github users according to their guthub username/login.
 
 2_github_finder: Using prop drilling and class components
+
+2_github_finder_class_practice: Created github-finder app on my own again to practice class components. Also clarified doubts about react-router-dom
 
 2_github_finder_hooks: Using prop drilling and functional components, React hooks
 
