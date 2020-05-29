@@ -97,6 +97,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/' render={props => (
                 // Refer: https://reactjs.org/docs/render-props.html
+                // Search and Users are not using any Route props. So not adding {...props} to them. 
                 <Fragment>
                   <Row >
                     <Col style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'center' }}>
@@ -114,6 +115,8 @@ class App extends React.Component {
               <Route exact path='/user/:login' render={props => (
                 // Refer: https://reactjs.org/docs/render-props.html
                 // Refer: https://reactjs.org/docs/jsx-in-depth.html#spread-attributes
+                // User is using Route props. So adding {...props} to it. 
+                // Check react-router-dom docs for more info on render.
                     <User {...props} 
                           getUser={this.getUserFromGitHub} 
                           user={this.state.user} 
