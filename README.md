@@ -24,6 +24,8 @@ The following projects use the GitHub API for backend. E.g. users, repository li
 
 2_github_finder: Using prop drilling and class components
 
+2_github_finder_class_practice: Created github-finder app on my own again to practice class components. Also clarified doubts about react-router-dom
+
 2_github_finder_hooks: Using prop drilling and functional components, React hooks
 
 2_github_finder_hooks_context: Using pure functional components using React hooks. Context API to manage state at application level.
