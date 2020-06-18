@@ -14,6 +14,8 @@ https://daveceddia.com/where-initialize-state-react/
 
 ## Description of folders in this repository:
 
+### Part of udemy course "React Front To Back" by Brad Traversy. These are fully functional, coded along with course. Plus some of my experiments with react.
+
 ### Tic-tac-toe game on official React website
 
 1 my-app: Using prop drilling and class components
