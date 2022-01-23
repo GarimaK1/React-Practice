@@ -10,6 +10,8 @@ Important!! Refer:
 https://reactjs.org/docs/react-component.html#setstate
 https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973
 https://stackoverflow.com/questions/49500255/warning-this-synthetic-event-is-reused-for-performance-reasons-happening-with/52223990
+Where to Initialize State in React
+https://daveceddia.com/where-initialize-state-react/
 
 # React-Practice: React based projects
 
@@ -24,6 +26,8 @@ The following projects use the GitHub API for backend. E.g. users, repository li
 ### Projct description: Using search bar, we can search github users according to their guthub username/login.
 
 2_github_finder: Using prop drilling and class components
+
+2_github_finder_class_practice: Created github-finder app on my own again to practice class components. Also clarified doubts about react-router-dom
 
 2_github_finder_hooks: Using prop drilling and functional components, React hooks
 
