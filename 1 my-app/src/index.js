@@ -142,6 +142,7 @@ ReactDOM.render(
 function calculateWinner(squares) {
     // Given an array of 9 squares, this function will check for a winner 
     // and return 'X', 'O', or null as appropriate.
+    // 3 horizontal lines, 3 vertical lines or 2 diagonals win. These numbers represent the indices.
     const lines = [
         [0, 1, 2],
         [3, 4, 5],

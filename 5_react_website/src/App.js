@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import DisplayName from "./DisplayName";
 import ToDoApp from './ToDoApp';
 import Timer from "./Timer";
+import First from './DiffClassFuncCompo/First';
 import BasicExampleRoutes from "./BasicExampleRoutes";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,6 +14,7 @@ function App() {
       <Timer />
       <ToDoApp />
       {/* <BasicExampleRoutes /> */}
+      <First />
     </Fragment>
   );
 }

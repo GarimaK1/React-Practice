@@ -23,7 +23,7 @@ class Timer extends React.Component {
 
     componentDidMount() {
         this.tick();
-        console.log("Mounted");
+        console.log("Mounted Timer");
     }
 
     componentWillUnmount() {

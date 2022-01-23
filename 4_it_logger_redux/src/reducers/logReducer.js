@@ -46,7 +46,8 @@ export default (state = initialState, action) => {
         case SEARCH_LOGS:
             return {
                 ...state,
-                logs: action.payload
+                logs: action.payload,
+                loading: false
             }
         case SET_CURRENT_LOG:
             return {
@@ -68,7 +69,8 @@ export default (state = initialState, action) => {
             console.error(action.payload);
             return {
                 ...state,
-                error: action.payload
+                error: action.payload,
+                loading: false
             }
         default:
             return state;

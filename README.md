@@ -6,6 +6,11 @@ The Many Ways to Return JSX
 
 https://scotch.io/starters/react/returning-jsx
 
+Important!! Refer: 
+https://reactjs.org/docs/react-component.html#setstate
+https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973
+https://stackoverflow.com/questions/49500255/warning-this-synthetic-event-is-reused-for-performance-reasons-happening-with/52223990
+
 # React-Practice: React based projects
 
 ## Description of folders in this repository:
@@ -41,6 +46,7 @@ Users can add/update/delete logs. Add/delete technicians. json-server as backend
 ### Check package.json scripts section to see how to start each application using npm.
 
 ### Refer to understand react with hooks:
+-- https://www.udemy.com/course/modern-react-front-to-back/learn/lecture/14969816#questions/10422636
 -- https://overreacted.io/a-complete-guide-to-useeffect/
 -- https://github.com/bradtraversy/contact-keeper/tree/hookfix#this-branch-has-been-refactored-to-take-a-more-hook-orientated-approach
 

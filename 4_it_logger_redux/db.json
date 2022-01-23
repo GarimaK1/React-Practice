@@ -1,13 +1,6 @@
 {
   "logs": [
     {
-      "id": 1,
-      "message": "Workstation 008 broken",
-      "tech": "Sara Wilson",
-      "attention": true,
-      "date": "2020-05-21T15:40:56.250Z"
-    },
-    {
       "message": "Install Firefox in machine #12",
       "tech": "Sarah Wilson",
       "attention": false,
@@ -31,19 +24,29 @@
   ],
   "techs": [
     {
-      "id": 1,
-      "firstName": "John",
-      "lastName": "Doe"
-    },
-    {
-      "id": 2,
-      "firstName": "Sam",
-      "lastName": "Smith"
-    },
-    {
       "id": 3,
       "firstName": "Sara",
       "lastName": "Wilson"
+    },
+    {
+      "firstName": "G",
+      "lastName": "K",
+      "id": 4
+    },
+    {
+      "firstName": "P",
+      "lastName": "P",
+      "id": 5
+    },
+    {
+      "firstName": "Priya",
+      "lastName": "Prakash",
+      "id": 6
+    },
+    {
+      "firstName": "Lakshmi",
+      "lastName": "Bajaj",
+      "id": 7
     }
   ]
 }

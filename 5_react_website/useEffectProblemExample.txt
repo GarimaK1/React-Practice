@@ -1,0 +1,88 @@
+Q) Lecture 87, React Front to Back
+How can the component Logs update after an update if the second parameter of 
+useEffect hook in Logs.js is an empty array?
+
+useEffect(() => {
+    getLogs();
+ 
+    //eslint-disable-next-line
+  }, []); 
+
+Ans #1) Leonidas, TA:
+As described in React docs-
+If you want to run an effect and clean it up only once (on mount and unmount),
+you can pass an empty array ([]) as a second argument. This tells React that your 
+effect doesn’t depend on any values from props or state, so it never needs to re-run.
+
+After an update in the state the component re-renders and displays the new Logs state. 
+The empty array as a second parameter of useEffect makes the effect run once and blocks 
+consecutive re-renders. Once is enough to display the updated Logs state.
+
+The change in the state is caused by the change in the input text in the search bar,
+defined in SearchBar.js
+
+const SearchBar = ({ searchLogs }) => {
+  const text = useRef('');
+ 
+  const onChange = (e) => {
+    searchLogs(text.current.value);
+  };
+ 
+  return (
+    <nav style={‌{ marginBottom: '30px' }} className='blue'>
+      <div className='nav-wrapper'>
+        <form>
+          <div className='input-field'>
+            <input
+              id='search'
+              type='search'
+              placeholder='Search Logs..'
+              ref={text}
+              onChange={onChange}
+            />
+//...
+The searchLogs call dispatches the SEARCH_LOGS action
+
+export const searchLogs = (text) => async (dispatch) => {
+  try {
+    setLoading();
+ 
+    const res = await fetch(`/logs?q=${text}`);
+    const data = await res.json();
+ 
+    dispatch({
+      type: SEARCH_LOGS,
+      payload: data,
+    });
+which brings the new logs state
+
+case SEARCH_LOGS:
+      return {
+        ...state,
+        logs: action.payload,
+      };
+and the component renders the new state.
+
+Ans #2) Will, TA:
+Hi guys.
+Just thought I would pass on some information about useEffect/hooks here.
+If you're having to use // eslint-disable-next-line then it's a pretty good indicator 
+you're doing something wrong.
+The problem is if you do include getLogs in the dependency array, you will get infinite calls 
+of useEffect, because every time you call getLogs() it updates state, which triggers a re-render 
+and creates a new function for getLogs, which if included in the dependency array then 
+useEffect sees it's a new function and calls getLogs again.... And so on.
+The solution isn't to ignore the linter warnings.
+It's telling you you're doing something wrong. Every time we update state we are creating
+not just the getLogs function but a whole load of other functions/actions, this is really 
+inefficient. We don't need to create a new function every time that does the exact same 
+thing as the last function did.
+It does lead in to a bigger issue though of how do you do this correctly?
+The simple answer is to take all of the actions out of the context state, then they don't 
+change on each state update and we use the same function every time instead of creating new ones.
+If you want to read more and see how to do this in this app, then please check out the 
+hookfix branch in Brad's repository.
+Hope that helps.
+
+hookfix branch link:
+https://github.com/bradtraversy/contact-keeper/tree/hookfix#this-branch-has-been-refactored-to-take-a-more-hook-orientated-approach

@@ -18,7 +18,7 @@ export const setLoading = () => {
 // async(dispatch to reducer, getState)
 export const getTechs = () => async (dispatch) => {
     try {
-        setLoading();
+        dispatch(setLoading());
         const res = await fetch('/techs');
         const data = await res.json();
 
@@ -37,7 +37,7 @@ export const getTechs = () => async (dispatch) => {
 // Action: Add new technician
 export const addTech = (tech) => async (dispatch) => {
     try {
-        setLoading();
+        dispatch(setLoading());
         const res = await fetch('/techs', {
             method: 'POST',
             body: JSON.stringify(tech),
@@ -61,7 +61,7 @@ export const addTech = (tech) => async (dispatch) => {
 // Action: Delete a technician
 export const deleteTech = (id) => async (dispatch) => {
     try {
-        setLoading();
+        dispatch(setLoading());
         await fetch(`/techs/${id}`, {
             method: 'DELETE'
         });
