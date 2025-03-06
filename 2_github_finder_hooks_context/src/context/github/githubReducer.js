@@ -8,9 +8,10 @@ import {
 } from '../types';
 
 // reducer is just a function
-// it is apparently simply returning updated state based on action.
+// it is simply returning updated state based on action.
 export default (state, action) => {
     // dispatch dispatches actions/object{type, payload} to reducer
+    // To update deeply nested objects, can use 'immer' library. Refer: https://react.dev/learn/updating-objects-in-state#updating-a-nested-object 
     switch(action.type) {
         case GET_INITIAL_USERS:
             return { ...state, users: action.payload, loading: false };

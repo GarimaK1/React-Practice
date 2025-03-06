@@ -31,7 +31,6 @@ const App = () => {
               <Route exact path='/about' component={About} />
               <Route exact path='/user/:login' component={User} />
               <Route component={NotFound} />
-              />
             </Switch>
           </Container>
         </Fragment>
